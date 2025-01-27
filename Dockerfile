@@ -9,8 +9,8 @@ RUN curl -fsSL https://ollama.com/install.sh | bash
 # Expor a porta usada pelo Ollama
 EXPOSE 11434
 
-# Configurar o Ollama para escutar em todas as interfaces
-ENV OLLAMA_BIND=0.0.0.0
+# Criar um script para iniciar o Ollama com o bind correto
+RUN echo '#!/bin/bash\nollama serve --address=0.0.0.0 --port=11434' > /start.sh && chmod +x /start.sh
 
-# Iniciar o servidor Ollama
-CMD ["ollama", "serve"]
+# Usar o script para iniciar o Ollama
+CMD ["/start.sh"]

@@ -13,4 +13,4 @@ EXPOSE 11434
 ENV OLLAMA_BIND=0.0.0.0
 
 # Iniciar o servidor Ollama
-CMD ["ollama", "serve"]
+CMD ["ollama", "serve", "--bind", "0.0.0.0"]

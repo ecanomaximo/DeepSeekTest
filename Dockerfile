@@ -9,5 +9,8 @@ RUN curl -fsSL https://ollama.com/install.sh | bash
 # Expor a porta usada pelo Ollama
 EXPOSE 11434
 
-# Iniciar o servidor Ollama com o endereço correto
-CMD ["ollama", "serve", "--address", "0.0.0.0"]
+# Configurar para escutar em todas as interfaces
+ENV OLLAMA_BIND=0.0.0.0
+
+# Iniciar o servidor Ollama
+CMD ["ollama", "serve"]

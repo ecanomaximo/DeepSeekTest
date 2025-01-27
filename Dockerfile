@@ -1,13 +1,13 @@
 FROM ubuntu:latest
 
-# Instale dependências
+# Atualizar e instalar dependências
 RUN apt-get update && apt-get install -y curl wget python3 python3-pip
 
-# Instale o Ollama
+# Instalar o Ollama
 RUN curl -fsSL https://ollama.com/install.sh | bash
 
-# Exponha a porta padrão
+# Expor a porta usada pelo Ollama
 EXPOSE 11434
 
-# Inicie o servidor Ollama
-CMD ["ollama", "serve"]
+# Iniciar o servidor Ollama com o endereço correto
+CMD ["ollama", "serve", "--address", "0.0.0.0"]

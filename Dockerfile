@@ -10,7 +10,7 @@ RUN curl -fsSL https://ollama.com/install.sh | bash
 EXPOSE 11434
 
 # Configurar para escutar em todas as interfaces
-ENV OLLAMA_BIND="0.0.0.0"
+ENV OLLAMA_BIND=0.0.0.0
 
 # Iniciar o servidor Ollama
 CMD ["ollama", "serve"]

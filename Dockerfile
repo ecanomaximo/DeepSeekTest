@@ -1,17 +1,20 @@
-# Imagem base do Ubuntu
-FROM ubuntu:latest
+# Base image
+FROM python:3.9-slim
 
-# Atualizar pacotes e instalar dependências
-RUN apt-get update && apt-get install -y curl wget python3 python3-pip
+# Atualiza o sistema e instala dependências básicas
+RUN apt-get update && apt-get install -y \
+    curl \
+    && apt-get clean
 
-# Instalar o Ollama
-RUN curl -fsSL https://ollama.com/install.sh | bash
+# Instala o Ollama (presumindo que haja um script ou dependência para isso)
+# Ajuste conforme necessário para o processo de instalação do Ollama
+RUN pip install --no-cache-dir ollama
 
-# Expor a porta usada pelo Ollama
-EXPOSE 11434
+# Cria o diretório do app
+WORKDIR /app
 
-# Configurar para o Ollama escutar em todas as interfaces
-ENV OLLAMA_HOST=http://0.0.0.0:11434
+# Copia os arquivos do projeto para o container
+COPY . /app
 
-# Comando para iniciar o Ollama
-CMD ["ollama", "serve"]
+# Define o comando de inicialização
+CMD ["ollama", "run"]
